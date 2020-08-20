@@ -1,14 +1,14 @@
 ({
     name: "LINE Notify", // Category Name
     icon: "/static/icon.png", // Category icon
-    color: "#1ABC9C", // Category color (recommend some blocks color)
+    color: "#28B463", // Category color (recommend some blocks color)
     blocks: [ // Blocks in Category
         {
             xml: `
                 <block type="linenotify">
                     <value name="auth">
                         <shadow type="text">
-                            <field name="TEXT">--linenotify-auth--</field>
+                            <field name="TEXT">--auth--</field>
                         </shadow>
                     </value>
                     <value name="msg">
