@@ -1,5 +1,9 @@
 ({
     name: "LINE Notify", // Category Name
+    description: "Send notification from everywhere to LINE",
+    author: "microBlock",
+    category: "Communication",
+    version: "1.0.0",
     icon: "/static/icon.png", // Category icon
     color: "#28B463", // Category color (recommend some blocks color)
     blocks: [ // Blocks in Category
