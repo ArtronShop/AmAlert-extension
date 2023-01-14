@@ -3,7 +3,7 @@
     description: "Send notification from everywhere to LINE",
     author: "microBlock",
     category: "Communication",
-    version: "1.0.0",
+    version: "1.1.0",
     icon: "/static/icon.png", // Category icon
     color: "#28B463", // Category color (recommend some blocks color)
     blocks: [ // Blocks in Category
@@ -35,6 +35,7 @@
         }
     ],
     chip: [
-        "ESP32" // Chip support
+        "ESP32", // Chip support
+        "RP2-WiFi"
     ]
 });
