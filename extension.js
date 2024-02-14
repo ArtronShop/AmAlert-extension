@@ -41,6 +41,6 @@
     ], 
     supportArduinoPlatform: true,
     depends: [ // Arduino library
-        "ArtronShop_LineNotify@1.0.2"
+        "ArtronShop_LineNotify@1.1.0"
     ]
 });

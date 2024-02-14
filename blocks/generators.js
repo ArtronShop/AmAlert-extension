@@ -47,7 +47,7 @@ Blockly.JavaScript['linenotify'] = function(block) {
   var functionName = Blockly.JavaScript.provideFunction_(
     'SendNotify',
     [
-      'bool ' + Blockly.JavaScript.FUNCTION_NAME_PLACEHOLDER_ + '(String token, String msg, int stickerPackageId = 0, int stickerId = 0):',
+      'bool ' + Blockly.JavaScript.FUNCTION_NAME_PLACEHOLDER_ + '(String token, String msg, int stickerPackageId = 0, int stickerId = 0) {',
       '  LINE.begin(token);',
       '  ',
       '  LINE_Notify_Massage_Option_t option;',
