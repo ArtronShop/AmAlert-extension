@@ -58,7 +58,7 @@ Blockly.JavaScript['linenotify'] = function(block) {
     ]
   );
 
-  var code = `${functionName}(${value_auth}, String(${value_msg}), ${value_stickerPackageid}, ${value_stickerId})\n`;
+  var code = `${functionName}(${value_auth}, String(${value_msg}), ${value_stickerPackageid}.toInt(), ${value_stickerId}.toInt());\n`;
   return code;
 };
 
