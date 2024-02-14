@@ -34,3 +34,31 @@ Blockly.Python['linenotify'] = function(block) {
   var code = `${functionName}(${value_auth}, str(${value_msg}), ${value_stickerpackageid}, ${value_stickerid})\n`;
   return code;
 };
+
+
+Blockly.JavaScript['linenotify'] = function(block) {
+  var value_auth = Blockly.JavaScript.valueToCode(block, 'auth', Blockly.JavaScript.ORDER_ATOMIC) || "";
+  var value_msg = Blockly.JavaScript.valueToCode(block, 'msg', Blockly.JavaScript.ORDER_ATOMIC) || "";
+  var value_stickerPackageid = Blockly.JavaScript.valueToCode(block, 'stickerPackageId', Blockly.JavaScript.ORDER_ATOMIC) || "";
+  var value_stickerId = Blockly.JavaScript.valueToCode(block, 'stickerId', Blockly.JavaScript.ORDER_ATOMIC) || "";
+
+  Blockly.JavaScript.definitions_['include']['ArtronShop_LineNotify.h'] = '#include <ArtronShop_LineNotify.h>';
+
+  var functionName = Blockly.JavaScript.provideFunction_(
+    'SendNotify',
+    [
+      'bool ' + Blockly.JavaScript.FUNCTION_NAME_PLACEHOLDER_ + '(String token, String msg, int stickerPackageId = 0, int stickerId = 0):',
+      '  LINE.begin(token);',
+      '  ',
+      '  LINE_Notify_Massage_Option_t option;',
+      '  option.sticker.package_id = stickerPackageId;',
+      '  option.sticker.id = stickerId;',
+      '  return LINE.send(msg, &option);',
+      '}'
+    ]
+  );
+
+  var code = `${functionName}(${value_auth}, String(${value_msg}), ${value_stickerPackageid}, ${value_stickerId})\n`;
+  return code;
+};
+

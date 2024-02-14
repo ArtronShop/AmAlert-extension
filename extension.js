@@ -3,7 +3,7 @@
     description: "Send notification from everywhere to LINE",
     author: "microBlock",
     category: "Communication",
-    version: "1.1.0",
+    version: "1.2.0",
     icon: "/static/icon.png", // Category icon
     color: "#28B463", // Category color (recommend some blocks color)
     blocks: [ // Blocks in Category
@@ -34,8 +34,13 @@
             `
         }
     ],
-    chip: [
-        "ESP32", // Chip support
-        "RP2-WiFi"
+    chip: [ // Chip support
+        "ESP32",
+        "RP2-WiFi",
+        "Uno-R4-WiFi"
+    ], 
+    supportArduinoPlatform: true,
+    depends: [ // Arduino library
+        "ArtronShop_LineNotify@1.0.2"
     ]
 });
