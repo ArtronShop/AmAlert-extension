@@ -1,26 +1,26 @@
-Blockly.Python['linenotify'] = function(block) {
+Blockly.Python['am-alert'] = function(block) {
   var value_auth = Blockly.Python.valueToCode(block, 'auth', Blockly.Python.ORDER_ATOMIC) || "";
   var value_msg = Blockly.Python.valueToCode(block, 'msg', Blockly.Python.ORDER_ATOMIC) || "";
-  var value_stickerpackageid = Blockly.Python.valueToCode(block, 'stickerPackageId', Blockly.Python.ORDER_ATOMIC) || "";
-  var value_stickerid = Blockly.Python.valueToCode(block, 'stickerId', Blockly.Python.ORDER_ATOMIC) || "";
+  var value_image = Blockly.Python.valueToCode(block, 'image', Blockly.Python.ORDER_ATOMIC) || "";
 
   Blockly.Python.definitions_['import_usocket_as_socket'] = 'import usocket as socket';
   Blockly.Python.definitions_['import_ussl_as_ssl'] = 'import ussl as ssl';
+  Blockly.Python.definitions_['import_ujson_as_json'] = 'import ujson as json';
 
   var functionName = Blockly.Python.provideFunction_(
-    'SendNotify',
-    ['def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '(auth, msg, stickerPackageId="", stickerId=""):',
+    'SendAmAlert',
+    ['def ' + Blockly.Python.FUNCTION_NAME_PLACEHOLDER_ + '(auth, msg, image=""):',
     '  s = socket.socket()',
-    '  ai = socket.getaddrinfo("notify-api.line.me", 443)',
+    '  ai = socket.getaddrinfo("alert.artronshop.co.th", 443)',
     '  s.connect(ai[0][-1])',
     '  s = ssl.wrap_socket(s)',
-    '  payload = "message=" + msg',
-    '  if len(stickerPackageId) > 0:',
-    '    payload = payload + "&stickerPackageId=" + stickerPackageId',
-    '  if len(stickerId) > 0:',
-    '    payload = payload + "&stickerId=" + stickerId',
-    '  s.write("POST /api/notify HTTP/1.0\\r\\n")',
-    '  s.write("Content-Type: application/x-www-form-urlencoded\\r\\n")',
+    '  obj = { }',
+    '  obj.message = msg',
+    '  if len(image) > 0:',
+    '    obj.image = image',
+    '  payload = json.dumps(obj)',
+    '  s.write("POST /api/push HTTP/1.0\\r\\n")',
+    '  s.write("Content-Type: application/json\\r\\n")',
     '  s.write("Authorization: Bearer {}\\r\\n".format(auth))',
     '  s.write("User-Agent: microBlock IDE\\r\\n")',
     '  s.write("Content-Length: {}\\r\\n".format(len(payload)))',
@@ -31,34 +31,34 @@ Blockly.Python['linenotify'] = function(block) {
     '  ',
     '  s.close()']);
 
-  var code = `${functionName}(${value_auth}, str(${value_msg}), ${value_stickerpackageid}, ${value_stickerid})\n`;
+  var code = `${functionName}(${value_auth}, str(${value_msg}), ${value_image})\n`;
   return code;
 };
 
 
-Blockly.JavaScript['linenotify'] = function(block) {
+Blockly.JavaScript['am-alert'] = function(block) {
   var value_auth = Blockly.JavaScript.valueToCode(block, 'auth', Blockly.JavaScript.ORDER_ATOMIC) || "";
   var value_msg = Blockly.JavaScript.valueToCode(block, 'msg', Blockly.JavaScript.ORDER_ATOMIC) || "";
-  var value_stickerPackageid = Blockly.JavaScript.valueToCode(block, 'stickerPackageId', Blockly.JavaScript.ORDER_ATOMIC) || "";
-  var value_stickerId = Blockly.JavaScript.valueToCode(block, 'stickerId', Blockly.JavaScript.ORDER_ATOMIC) || "";
+  var value_image = Blockly.JavaScript.valueToCode(block, 'stickerPackageId', Blockly.JavaScript.ORDER_ATOMIC) || "";
 
-  Blockly.JavaScript.definitions_['include']['ArtronShop_LineNotify.h'] = '#include <ArtronShop_LineNotify.h>';
+  Blockly.JavaScript.definitions_['include']['AmAlert.h'] = '#include <AmAlert.h>';
 
   var functionName = Blockly.JavaScript.provideFunction_(
-    'SendNotify',
+    'SendAmAlert',
     [
-      'bool ' + Blockly.JavaScript.FUNCTION_NAME_PLACEHOLDER_ + '(String token, String msg, int stickerPackageId = 0, int stickerId = 0) {',
-      '  LINE.begin(token);',
+      'bool ' + Blockly.JavaScript.FUNCTION_NAME_PLACEHOLDER_ + '(String token, String msg, String image = "") {',
+      '  Alert.begin(token);',
       '  ',
-      '  LINE_Notify_Massage_Option_t option;',
-      '  option.sticker.package_id = stickerPackageId;',
-      '  option.sticker.id = stickerId;',
-      '  return LINE.send(msg, &option);',
+      '  Am_Alert_Massage_Option_t option;',
+      '  if (image.length() > 0) {',
+      '    option.image.url = image;',
+      '  }',
+      '  return Alert.send(msg, &option);',
       '}'
     ]
   );
 
-  var code = `${functionName}(${value_auth}, String(${value_msg}), ${value_stickerPackageid}.toInt(), ${value_stickerId}.toInt());\n`;
+  var code = `${functionName}(${value_auth}, String(${value_msg}), String(${value_image}));\n`;
   return code;
 };
 
