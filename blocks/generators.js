@@ -24,7 +24,7 @@ Blockly.Python['am-alert'] = function(block) {
     '  s.write("Content-Type: application/json\\r\\n")',
     '  s.write("Authorization: Bearer {}\\r\\n".format(auth))',
     '  s.write("User-Agent: microBlock IDE\\r\\n")',
-    '  s.write("Content-Length: {}\\r\\n".format(len(payload)))',
+    '  s.write("Content-Length: {}\\r\\n".format(len(payload.encode(\'utf-8\'))))',
     '  s.write("\\r\\n")',
     '  s.write(payload)',
     '  ',
